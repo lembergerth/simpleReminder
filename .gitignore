@@ -19,3 +19,6 @@ hs_err_pid*
 .classpath
 .project
 bin
+
+#FeatureIDE
+src/*
