@@ -18,7 +18,10 @@
 						<feature mandatory="true" name="EnglishSlash"/>
 						<feature mandatory="true" name="EnglishDot"/>
 					</alt>
-					<feature name="Reminder"/>
+					<or name="Reminder">
+						<feature mandatory="true" name="Sound"/>
+						<feature mandatory="true" name="Visual"/>
+					</or>
 				</and>
 			</and>
 		</struct>
