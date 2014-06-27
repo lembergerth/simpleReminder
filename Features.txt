@@ -1,0 +1,6 @@
+Dates: Tan1al0s
+Reminder: Tan1al0s
+Shell: Tan1al0s
+GUI: LeoStrakosch
+Favorites: LeoStrakosch
+Move existing functionality to corresponding features: LeoStrakosch
