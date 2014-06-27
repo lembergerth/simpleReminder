@@ -121,7 +121,7 @@ public class CLIReminder implements Reminder {
     Iterator it = tasks.iterator();
     while(it.hasNext()) {
     	Task task = (Task) it.next();
-      display(formatter.getString(t));
+      display(formatter.getString(task));
     }
 
     display("\n" + tasks.size() + " task(s) displayed.");
@@ -136,7 +136,7 @@ public class CLIReminder implements Reminder {
     if (tasks.isEmpty()) {
       taskId = 1;
     } else {
-      taskId = tasks.getLast().getTaskID() + 1;
+      taskId = ((Task) tasks.getLast()).getTaskID() + 1;
     }
 
     return taskId;
