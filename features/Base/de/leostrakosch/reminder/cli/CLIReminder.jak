@@ -113,12 +113,14 @@ public class CLIReminder implements Reminder {
     displayTasks(tasks);
   }
 
-  private void displayTasks(List<Task> tasks) {
+  private void displayTasks(List tasks) {
     TaskFormat formatter = new SeparatorFormatter(SEPARATOR);
 
     display("ID" + SEPARATOR + "due date" + SEPARATOR + "name" + SEPARATOR +  "description");
 
-    for (Task t : tasks) {
+    Iterator it = tasks.iterator();
+    while(it.hasNext()) {
+    	Task task = (Task) it.next();
       display(formatter.getString(t));
     }
 
@@ -126,7 +128,7 @@ public class CLIReminder implements Reminder {
   }
 
   private long getNextTaskID() {
-    LinkedList<Task> tasks = new LinkedList<Task>(getTasks());
+    LinkedList tasks = new LinkedList(getTasks());
     long taskId;
 
     Collections.sort(tasks);
@@ -175,7 +177,7 @@ public class CLIReminder implements Reminder {
     }
   }
 
-  private boolean commit (List<Task> tasks) {
+  private boolean commit (List tasks) {
     try {
       cache.updateCacheAndCommit(tasks);
       return true;
@@ -195,7 +197,7 @@ public class CLIReminder implements Reminder {
   }
 
   @Override
-  public List<Task> getTasks() {
+  public List getTasks() {
     if (cache == null) {
       createCache();
     }
@@ -212,13 +214,13 @@ public class CLIReminder implements Reminder {
   }
 
   @Override
-  public List<Task> getTasks(Date d) {
-    List<Task> tasks = getTasks();
-    Iterator<Task> taskIterator = tasks.iterator();
+  public List getTasks(Date d) {
+    List tasks = getTasks();
+    Iterator taskIterator = tasks.iterator();
     Task currentTask;
 
     while (taskIterator.hasNext()) {
-      currentTask = taskIterator.next();
+      currentTask = (Task) taskIterator.next();
 
       if (!currentTask.getDueDate().equals(d)) {
         taskIterator.remove();
@@ -238,22 +240,22 @@ public class CLIReminder implements Reminder {
   }
 
   private class TaskCache {
-    private List<Task> cache;
+    private List cache;
     private DataManager manager = DataManager.getInstance();
 
-    public TaskCache(List<Task> tasks) {
-      cache = new LinkedList<Task>(tasks);
+    public TaskCache(List tasks) {
+      cache = new LinkedList(tasks);
     }
 
-    public void updateCacheAndCommit(List<Task> tasks) throws IOException {
+    public void updateCacheAndCommit(List tasks) throws IOException {
       if (!tasks.equals(cache)) {
-        cache = new LinkedList<Task>(tasks);
+        cache = new LinkedList(tasks);
         manager.save(cache);
       }
     }
 
-    public List<Task> getTasks() {
-      return new LinkedList<Task>(cache);
+    public List getTasks() {
+      return new LinkedList(cache);
     }
   }
 }

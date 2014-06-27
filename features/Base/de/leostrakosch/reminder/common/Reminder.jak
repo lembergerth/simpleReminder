@@ -8,15 +8,13 @@ import java.util.List;
  */
 public interface Reminder {
 
-    public enum Command {ADD, DELETE, LIST, HELP}
-
     public abstract long addTask(Task t);
 
     public abstract void deleteTask(long taskID);
 
-    public abstract List<Task> getTasks();
+    public abstract List getTasks();
 
-    public abstract List<Task> getTasks(Date d);
+    public abstract List getTasks(Date d);
 
     public abstract void displayHelp();
 }
