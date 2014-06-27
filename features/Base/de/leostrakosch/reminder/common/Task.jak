@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by leo on 14.05.14.
  */
-public class Task implements Comparable<Task> {
+public class Task implements Comparable {
 
     private String name;
     private String description;
@@ -55,8 +55,17 @@ public class Task implements Comparable<Task> {
     }
 
     @Override
-    public int compareTo(Task task) {
-        long difference = this.id - task.id;
+    public int compareTo(Object obj) {
+        Task task;
+        long difference;
+        
+        if (!(obj instanceof Task)) {
+            throw new AssertionError("Task not compareable to " + obj);
+        }
+        
+        task = (Task) obj;
+        
+        difference = this.id - task.id;
 
         if (difference > Integer.MAX_VALUE) {
             return Integer.MAX_VALUE;

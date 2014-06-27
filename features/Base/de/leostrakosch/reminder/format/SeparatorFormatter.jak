@@ -59,8 +59,8 @@ public class SeparatorFormatter implements TaskFormat {
     return Task.create(name, description, dueDate, id);
   }
 
-  private List<String> splitInput(String input, String separator) {
-    ArrayList<String> output = new ArrayList<String>(5);
+  private List splitInput(String input, String separator) {
+    ArrayList output = new ArrayList(5);
     int pointer = 0;
     int separatorSize = separator.length();
     String currString = input;

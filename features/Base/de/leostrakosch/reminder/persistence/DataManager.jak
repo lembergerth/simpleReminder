@@ -14,9 +14,9 @@ public abstract class DataManager {
         return new TextFileDataManager();
     }
 
-    public abstract void save(List<Task> tasks) throws IOException;
+    public abstract void save(List tasks) throws IOException;
 
-    public abstract List<Task> getTasks();
+    public abstract List getTasks();
 
 
 }

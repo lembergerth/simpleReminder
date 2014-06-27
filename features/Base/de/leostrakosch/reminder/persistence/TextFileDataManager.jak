@@ -9,6 +9,7 @@ import de.leostrakosch.reminder.common.IllegalLineFormatException;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * Created by leo on 14.05.14.
@@ -29,15 +30,18 @@ public class TextFileDataManager extends DataManager {
   }
 
   @Override
-  public void save(List<Task> tasks) throws IOException {
+  public void save(List tasks) throws IOException {
     FileWriter fileWriter = null;
+    Task currentTask; 
+    
     try {
       fileWriter = new FileWriter(SAVE_FILE);
 
       fileWriter.write("");
 
-      for (Task t : tasks) {
-        fileWriter.append(format.getString(t) + "\n");
+      for (Iterator it = tasks.iterator(); it.hasNext();) {
+        currentTask = (Task) it.next();
+        fileWriter.append(format.getString(currentTask) + "\n");
       }
     } finally {
       if (fileWriter != null)
@@ -46,8 +50,8 @@ public class TextFileDataManager extends DataManager {
   }
 
   @Override
-  public List<Task> getTasks() {
-    List<Task> tasks = new LinkedList<Task>();
+  public List getTasks() {
+    List tasks = new LinkedList();
     int lineNumber = 0;
 
     try {
