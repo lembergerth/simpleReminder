@@ -1,8 +1,10 @@
+package de.leostrakosch.reminder.cli;
 
 import de.leostrakosch.reminder.common.*;
 import de.leostrakosch.reminder.format.SeparatorFormatter;
 import de.leostrakosch.reminder.format.TaskFormat;
 import de.leostrakosch.reminder.persistence.DataManager;
+import de.leostrakosch.reminder.common.Command;
 
 import java.io.IOException;
 import java.text.DateFormat;

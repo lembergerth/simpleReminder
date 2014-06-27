@@ -1,3 +1,4 @@
+package de.leostrakosch.reminder.common;
 
 /**
  * Created by leo on 14.05.14.

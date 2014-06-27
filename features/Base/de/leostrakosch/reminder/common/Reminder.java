@@ -1,3 +1,4 @@
+package de.leostrakosch.reminder.common;
 
 import java.util.Date;
 import java.util.List;
