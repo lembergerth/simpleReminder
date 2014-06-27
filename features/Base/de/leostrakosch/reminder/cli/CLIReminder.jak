@@ -1,4 +1,3 @@
-layer de.leostrakosch.reminder.cli;
 
 import de.leostrakosch.reminder.common.*;
 import de.leostrakosch.reminder.format.SeparatorFormatter;
