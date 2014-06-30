@@ -11,22 +11,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Iterator;
 
-/**
- * Created by leo on 14.05.14.
- */
 public class TextFileDataManager extends DataManager {
 
-  private static final String SEPARATOR = "|^|";
+  private final File saveFile;
+  private final String separator;
+  private final TaskFormat format;
 
-  private static final File SAVE_FILE = new File(Configuration.APP_DIRECTORY + File.separator + "tasks.txt");
-
-  private TaskFormat format = new SeparatorFormatter(SEPARATOR);
-
-  public TextFileDataManager() {
-    File appDir = SAVE_FILE.getParentFile();
+  public TextFileDataManager(String saveFilePath, String separator) {
+    File saveFile= new File(saveFilePath);
+    File appDir = saveFile.getParentFile();
+    
     if (!appDir.exists()) {
       appDir.mkdirs();
     }
+    
+    this.saveFile= saveFile;
+    this.separator = separator;
+   
+    format = new SeparatorFormatter(separator);
   }
 
   @Override
@@ -35,7 +37,7 @@ public class TextFileDataManager extends DataManager {
     Task currentTask; 
     
     try {
-      fileWriter = new FileWriter(SAVE_FILE);
+      fileWriter = new FileWriter(saveFile);
 
       fileWriter.write("");
 
@@ -55,7 +57,7 @@ public class TextFileDataManager extends DataManager {
     int lineNumber = 0;
 
     try {
-      BufferedReader reader = new BufferedReader(new FileReader(SAVE_FILE));
+      BufferedReader reader = new BufferedReader(new FileReader(saveFile));
       String line;
 
       while ((line = reader.readLine()) != null) {
@@ -64,7 +66,7 @@ public class TextFileDataManager extends DataManager {
       }
 
     } catch (IOException e) {
-      // return existing list
+      // return existing empty list
 
     } catch (IllegalLineFormatException e) {
       System.err.println("Illegal format in line " + lineNumber);

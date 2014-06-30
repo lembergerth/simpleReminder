@@ -5,18 +5,16 @@ import de.leostrakosch.reminder.common.Task;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by leo on 14.05.14.
- */
 public abstract class DataManager {
 
     public static DataManager getInstance() {
-        return new TextFileDataManager();
+      
+      // should be replaced in concrete feature implementation
+      throw new AssertionError("getInstance() not overwritten by persistence feature");
     }
 
     public abstract void save(List tasks) throws IOException;
 
     public abstract List getTasks();
-
 
 }
