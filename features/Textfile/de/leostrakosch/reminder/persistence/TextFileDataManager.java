@@ -14,7 +14,6 @@ import java.util.Iterator;
 public class TextFileDataManager extends DataManager {
 
   private final File saveFile;
-  private final String separator;
   private final TaskFormat format;
 
   public TextFileDataManager(String saveFilePath, String separator) {
@@ -26,8 +25,6 @@ public class TextFileDataManager extends DataManager {
     }
     
     this.saveFile= saveFile;
-    this.separator = separator;
-   
     format = new SeparatorFormatter(separator);
   }
 
