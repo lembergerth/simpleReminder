@@ -6,24 +6,30 @@ import java.util.List;
 import de.leostrakosch.reminder.persistence.DataManager;
 
 public class CLIReminder {
-  
+
   private DataManager manager = DataManager.getInstance();
-  
+
   @Override
   public List getTasks() {
-    return manager.getTasks();
+    try {
+      return manager.getTasks();
+      
+    } catch (IOException e) {
+      error("Error while getting tasks: " + e.getMessage());
+      return createList();
+    }
   }
-  
+
   private boolean commit(List tasks) {
     try {
       manager.save(tasks);
-      
+
     } catch (IOException e) {
-      error("Error while committing: " + e.getMessage() +"\nContinuing with commit.");
+      error("Error while committing: " + e.getMessage() + "\nContinuing with commit.");
       original(tasks);
       return false;
     }
-    
+
     return original(tasks);
   }
 }

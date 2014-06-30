@@ -15,6 +15,6 @@ public abstract class DataManager {
 
     public abstract void save(List tasks) throws IOException;
 
-    public abstract List getTasks();
+    public abstract List getTasks() throws IOException;
 
 }
