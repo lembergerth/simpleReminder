@@ -11,9 +11,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
 
-/**
- * Created by leo on 14.05.14.
- */
 public class CLIReminder implements Reminder {
 
   private static final String COLUMN_SEPARATOR = " | ";
@@ -40,6 +37,10 @@ public class CLIReminder implements Reminder {
     }
   }
 
+  private void execute(Command c, String[] args) {
+    // TODO remove
+  }
+  
   public Command getCommand(String command) throws WrongArgumentException {
     try {
       return Command.valueOf(command.toUpperCase());
@@ -49,53 +50,9 @@ public class CLIReminder implements Reminder {
     }
   }
 
-  // first entry of args has to be the command's string representation
-  public void execute(Command command, String[] args) throws WrongArgumentException {
-    DateFormat dateFormat = Configuration.DATE_FORMATTER;
-
-    switch (command) {
-    case ADD:
-      try {
-        addTask(Task.create(args[1], dateFormat.parse(args[2]), getNextTaskID()));
-
-      } catch (ParseException e) {
-        throw new WrongArgumentException(e);
-      }
-      break;
-
-    case DELETE:
-      try {
-        long taskID = Long.parseLong(args[1]);
-        deleteTask(taskID);
-
-      } catch (NumberFormatException e) {
-        throw new WrongArgumentException(e);
-      }
-      break;
-
-    case LIST:
-      try {
-        if (args.length == 1) {
-          listTasks();
-
-        } else if (args.length == 2) {
-          listTasks(dateFormat.parse(args[1]));
-        }
-
-      } catch (ParseException e) {
-        throw new WrongArgumentException(e);
-      }
-      break;
-
-    case HELP:
-    default:
-      displayHelp();
-    }
-  }
-
   private void listTasks() {
     List<Task> tasks = getTasks();
-
+    
     displayTasks(tasks);
   }
 
@@ -115,28 +72,32 @@ public class CLIReminder implements Reminder {
   }
 
   private void displayTasks(List tasks) {
-    TaskFormat formatter = new SeparatorFormatter(COLUMN_SEPARATOR);
-
-    display("ID" + COLUMN_SEPARATOR + "due date" + COLUMN_SEPARATOR + "name" + COLUMN_SEPARATOR + "description");
-
-    Iterator it = tasks.iterator();
-    while (it.hasNext()) {
-      Task task = (Task) it.next();
-      display(formatter.getString(task));
-    }
-
-    display("\n" + tasks.size() + " task(s) displayed.");
+    throw new AssertionError("Not implemented by feature UI");
+//    TaskFormat formatter = new SeparatorFormatter(COLUMN_SEPARATOR);
+//
+//    display("ID" + COLUMN_SEPARATOR + "due date" + COLUMN_SEPARATOR + "name" + COLUMN_SEPARATOR + "description");
+//
+//    Iterator it = tasks.iterator();
+//    while (it.hasNext()) {
+//      Task task = (Task) it.next();
+//      display(formatter.getString(task));
+//    }
+//
+//    display("\n" + tasks.size() + " task(s) displayed.");
   }
 
   private long getNextTaskID() {
     LinkedList tasks = new LinkedList(getTasks());
+    Comparator comp = new TaskIDComparator();
     long taskId;
-
-    Collections.sort(tasks);
 
     if (tasks.isEmpty()) {
       taskId = 1;
+      
     } else {
+
+      Collections.sort(tasks, comp); // sort by task id
+
       taskId = ((Task) tasks.getLast()).getTaskID() + 1;
     }
 
@@ -222,9 +183,9 @@ public class CLIReminder implements Reminder {
   }
 
   @Override
-  public void displayHelp() {
-    display("Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
+  public String getHelp() {
+    return "Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
         + "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n"
-        + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message");
+        + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message";
   }
 }
