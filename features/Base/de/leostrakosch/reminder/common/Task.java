@@ -1,14 +1,7 @@
 package de.leostrakosch.reminder.common;
 
-/**
- * Created by leo on 14.05.14.
- */
-
 import java.util.Date;
 
-/**
- * Created by leo on 14.05.14.
- */
 public class Task implements Comparable {
 
     private String name;
