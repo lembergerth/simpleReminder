@@ -7,10 +7,13 @@
 					<feature mandatory="true" name="SimpleGUI"/>
 					<feature mandatory="true" name="Shell"/>
 				</alt>
-				<alt mandatory="true" name="Persistence">
-					<feature mandatory="true" name="Binary"/>
-					<feature mandatory="true" name="Textfile"/>
-				</alt>
+				<and mandatory="true" name="Persistence">
+					<alt mandatory="true" name="SaveType">
+						<feature mandatory="true" name="Binary"/>
+						<feature mandatory="true" name="Textfile"/>
+					</alt>
+					<feature name="Cache"/>
+				</and>
 				<feature name="Favorites"/>
 				<and name="Dates">
 					<alt mandatory="true" name="DateFormat">
