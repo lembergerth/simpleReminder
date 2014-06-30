@@ -183,22 +183,6 @@ public class CLIReminder implements Reminder {
     return true;
   }
 
-  private void display(String s) {
-    System.out.println(s);
-  }
-  
-  private List createList(List list) {
-    return new ArrayList(list);
-  }
-  
-  private List createList() {
-    return new ArrayList();
-  }
-
-  private void error(String s) {
-    System.err.println(s);
-  }
-
   @Override
   public List getTasks() {
     return createList(tasks);
@@ -219,6 +203,22 @@ public class CLIReminder implements Reminder {
     }
 
     return null;
+  }
+ 
+  private List createList(List list) {
+    return new ArrayList(list);
+  }
+  
+  private List createList() {
+    return new ArrayList();
+  }
+  
+  private void display(String s) {
+    System.out.println(s);
+  }
+
+  private void error(String s) {
+    System.err.println(s);
   }
 
   @Override
