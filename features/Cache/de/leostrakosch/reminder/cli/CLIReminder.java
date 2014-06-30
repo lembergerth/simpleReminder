@@ -13,28 +13,27 @@ import de.leostrakosch.reminder.persistence.TaskCache;
 public class CLIReminder {
 
   private TaskCache cache;
-  
+
   @Override
   public List getTasks() {
     if (cache == null) {
-      createCache();
+      createCache(original());
     }
 
     return cache.getTasks();
   }
-  
-  private boolean commit(List tasks) {
-    try {
-      cache.updateCacheAndCommit(tasks);
-      return true;
 
-    } catch (IOException e) {
-      error("Error while commiting: " + e.getMessage());
-      return false;
+  private boolean commit(List tasks) {
+    if (cache == null) {
+      createCache(getTasks());
     }
+
+    cache.updateCache(tasks);
+    
+    return original(tasks);
   }
-  
-  private void createCache() {
-    cache = new TaskCache(DataManager.getInstance());
-  } 
+
+  private void createCache(List tasks) {
+    cache = new TaskCache(tasks);
+  }
 }
