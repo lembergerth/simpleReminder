@@ -3,10 +3,10 @@
 		<struct>
 			<and abstract="true" mandatory="true" name="simpleReminder">
 				<feature mandatory="true" name="Base"/>
-				<alt mandatory="true" name="UI">
+				<or mandatory="true" name="UI">
 					<feature mandatory="true" name="SimpleGUI"/>
 					<feature mandatory="true" name="Shell"/>
-				</alt>
+				</or>
 				<and mandatory="true" name="Persistence">
 					<alt mandatory="true" name="SaveType">
 						<feature mandatory="true" name="Binary"/>
@@ -14,7 +14,6 @@
 					</alt>
 					<feature name="Cache"/>
 				</and>
-				<feature name="Favorites"/>
 				<and name="Dates">
 					<alt mandatory="true" name="DateFormat">
 						<feature mandatory="true" name="German"/>
@@ -26,6 +25,7 @@
 						<feature mandatory="true" name="Visual"/>
 					</or>
 				</and>
+				<feature name="Favorites"/>
 			</and>
 		</struct>
 		<constraints/>
