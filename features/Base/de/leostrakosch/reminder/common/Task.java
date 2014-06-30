@@ -1,6 +1,9 @@
 package de.leostrakosch.reminder.common;
 
+import java.util.Comparator;
 import java.util.Date;
+
+import de.leostrakosch.reminder.common.TaskIDComparator;
 
 public class Task implements Comparable {
 
@@ -51,23 +54,13 @@ public class Task implements Comparable {
     public int compareTo(Object obj) {
         Task task;
         long difference;
+        Comparator comp = new TaskIDComparator();
         
         if (!(obj instanceof Task)) {
             throw new AssertionError("Task not compareable to " + obj);
         }
         
         task = (Task) obj;
-        
-        difference = this.id - task.id;
-
-        if (difference > Integer.MAX_VALUE) {
-            return Integer.MAX_VALUE;
-
-        } else if (difference < Integer.MIN_VALUE) {
-            return Integer.MIN_VALUE;
-
-        } else {
-            return (int) difference;
-        }
+        return comp.compare(this, obj);
     }
 }
