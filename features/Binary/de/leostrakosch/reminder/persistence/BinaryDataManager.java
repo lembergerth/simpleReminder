@@ -15,8 +15,6 @@ import de.leostrakosch.reminder.common.Task;
 public class BinaryDataManager extends DataManager {
   private static final String SUFFIX = ".ser";
 
-  private static int id = 0; // id of the last written task
-
   private File savePath;
 
   public BinaryDataManager(String savePathString) {
@@ -40,9 +38,7 @@ public class BinaryDataManager extends DataManager {
   }
 
   private void serialize(Task t) throws IOException {
-    id++;
-
-    String fileName = "task" + id + SUFFIX;
+    String fileName = "task" + t.getTaskID() + SUFFIX;
     File saveFile = new File(savePath, fileName);
     ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(saveFile));
 
