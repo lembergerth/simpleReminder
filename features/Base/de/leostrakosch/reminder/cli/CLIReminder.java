@@ -16,9 +16,9 @@ import java.util.*;
  */
 public class CLIReminder implements Reminder {
 
-  private static final String SEPARATOR = " | ";
+  private static final String COLUMN_SEPARATOR = " | ";
 
-  private TaskCache cache;
+  private List tasks = createList();
 
   public static void main(String[] args) {
     CLIReminder reminder = new CLIReminder();
@@ -54,42 +54,42 @@ public class CLIReminder implements Reminder {
     DateFormat dateFormat = Configuration.DATE_FORMATTER;
 
     switch (command) {
-      case ADD:
-        try {
-          addTask(Task.create(args[1], dateFormat.parse(args[2]), getNextTaskID()));
+    case ADD:
+      try {
+        addTask(Task.create(args[1], dateFormat.parse(args[2]), getNextTaskID()));
 
-        } catch (ParseException e) {
-          throw new WrongArgumentException(e);
+      } catch (ParseException e) {
+        throw new WrongArgumentException(e);
+      }
+      break;
+
+    case DELETE:
+      try {
+        long taskID = Long.parseLong(args[1]);
+        deleteTask(taskID);
+
+      } catch (NumberFormatException e) {
+        throw new WrongArgumentException(e);
+      }
+      break;
+
+    case LIST:
+      try {
+        if (args.length == 1) {
+          listTasks();
+
+        } else if (args.length == 2) {
+          listTasks(dateFormat.parse(args[1]));
         }
-        break;
 
-      case DELETE:
-        try {
-          long taskID = Long.parseLong(args[1]);
-          deleteTask(taskID);
+      } catch (ParseException e) {
+        throw new WrongArgumentException(e);
+      }
+      break;
 
-        } catch (NumberFormatException e) {
-          throw new WrongArgumentException(e);
-        }
-        break;
-
-      case LIST:
-        try {
-          if (args.length == 1) {
-            listTasks();
-
-          } else if (args.length == 2) {
-            listTasks(dateFormat.parse(args[1]));
-          }
-
-        } catch (ParseException e) {
-          throw new WrongArgumentException(e);
-        }
-        break;
-
-      case HELP:
-      default:
-        displayHelp();
+    case HELP:
+    default:
+      displayHelp();
     }
   }
 
@@ -115,13 +115,13 @@ public class CLIReminder implements Reminder {
   }
 
   private void displayTasks(List tasks) {
-    TaskFormat formatter = new SeparatorFormatter(SEPARATOR);
+    TaskFormat formatter = new SeparatorFormatter(COLUMN_SEPARATOR);
 
-    display("ID" + SEPARATOR + "due date" + SEPARATOR + "name" + SEPARATOR +  "description");
+    display("ID" + COLUMN_SEPARATOR + "due date" + COLUMN_SEPARATOR + "name" + COLUMN_SEPARATOR + "description");
 
     Iterator it = tasks.iterator();
-    while(it.hasNext()) {
-    	Task task = (Task) it.next();
+    while (it.hasNext()) {
+      Task task = (Task) it.next();
       display(formatter.getString(task));
     }
 
@@ -178,19 +178,21 @@ public class CLIReminder implements Reminder {
     }
   }
 
-  private boolean commit (List tasks) {
-    try {
-      cache.updateCacheAndCommit(tasks);
-      return true;
-
-    } catch (IOException e) {
-      error("Error while commiting: " + e.getMessage());
-      return false;
-    }
+  private boolean commit(List tasks) {
+    this.tasks = createList(tasks);
+    return true;
   }
 
   private void display(String s) {
     System.out.println(s);
+  }
+  
+  private List createList(List list) {
+    return new ArrayList(list);
+  }
+  
+  private List createList() {
+    return new ArrayList();
   }
 
   private void error(String s) {
@@ -199,19 +201,7 @@ public class CLIReminder implements Reminder {
 
   @Override
   public List getTasks() {
-    if (cache == null) {
-      createCache();
-    }
-
-    return cache.getTasks();
-  }
-
-  private void createCache() {
-    DataManager manager = DataManager.getInstance();
-
-    List<Task> tasks = manager.getTasks();
-
-    cache = new TaskCache(tasks);
+    return createList(tasks);
   }
 
   @Override
@@ -233,30 +223,8 @@ public class CLIReminder implements Reminder {
 
   @Override
   public void displayHelp() {
-    display("Possible commands are:\n" +
-        "\tadd <task> <date>\t\t- adds the given task for the given date\n" +
-        "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n" +
-        "\tdelete <task_id>\t\t- deletes the task with the given id\n" +
-        "\thelp\t\t- shows this message");
-  }
-
-  private class TaskCache {
-    private List cache;
-    private DataManager manager = DataManager.getInstance();
-
-    public TaskCache(List tasks) {
-      cache = new LinkedList(tasks);
-    }
-
-    public void updateCacheAndCommit(List tasks) throws IOException {
-      if (!tasks.equals(cache)) {
-        cache = new LinkedList(tasks);
-        manager.save(cache);
-      }
-    }
-
-    public List getTasks() {
-      return new LinkedList(cache);
-    }
+    display("Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
+        + "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n"
+        + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message");
   }
 }
