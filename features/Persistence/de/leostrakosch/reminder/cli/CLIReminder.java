@@ -15,7 +15,7 @@ public class CLIReminder {
       return manager.getTasks();
       
     } catch (IOException e) {
-      error("Error while getting tasks: " + e.getMessage());
+      updateError("Error while getting tasks: " + e.getMessage());
       return createList();
     }
   }
@@ -25,7 +25,7 @@ public class CLIReminder {
       manager.save(tasks);
 
     } catch (IOException e) {
-      error("Error while committing: " + e.getMessage() + "\nContinuing with commit.");
+      updateError("Error while committing: " + e.getMessage() + "\nContinuing with commit.");
       original(tasks);
       return false;
     }
