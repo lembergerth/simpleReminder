@@ -10,7 +10,7 @@ package de.leostrakosch.reminder.common;
  * Hopfully FeatrueIDE will support this mechanism nativly
  */
 public class FeatureRuntimeError extends RuntimeException {
-	private final String FEATURE_ERROR_MESSAGE = "A method is called which a feature does not allow with its new ";
+	private static final String FEATURE_ERROR_MESSAGE = "A method is called which a feature does not allow with its new ";
 
 	public FeatureRuntimeError(String message) {
 		super(FEATURE_ERROR_MESSAGE + '\n' + message);
