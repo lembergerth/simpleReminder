@@ -9,7 +9,7 @@ import de.leostrakosch.reminder.common.FeatureRuntimeError;
  * TODO description
  */
 public class Date {
-	private final String DELIM = ".";
+	private final String DELIM = "";
 	private byte day;
 	private byte month;
 	private short year;
@@ -21,15 +21,9 @@ public class Date {
 
 	public void interpretDateRepresentation(StringTokenizer st)
 			throws IllegalArgumentException {
-		/*
-		 * throw new FeatureRuntimeError(date,
-		 * "Date format must be spezified by different features");
-		 */
-		/* DELIM nicht vergessen */
-		// TODO muss von den verschiedenen features ueberschrieben werden.
-		day = Byte.parseByte(st.nextToken());
-		month = Byte.parseByte(st.nextToken());
-		year = Short.parseShort(st.nextToken());
+
+		throw new FeatureRuntimeError("date",
+				"Date format must be spezified by different features");
 	}
 
 	public static Date valueOf(String dateRepresentation)
@@ -46,6 +40,7 @@ public class Date {
 	}
 
 	public String getStringRepresentation() {
-		return String.valueOf("" + day + DELIM + month + DELIM + year);
+		throw new FeatureRuntimeError("date",
+				"Date format must be spezified by different features");
 	}
 }
