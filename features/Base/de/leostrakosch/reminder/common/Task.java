@@ -8,27 +8,15 @@ import de.leostrakosch.reminder.common.TaskIDComparator;
 public class Task implements Comparable {
 
     private String name;
-    private String description;
     private long id;
-
-    public Task(String name, String description, long id) {
-        this.name = name;
-        this.description = description;
-        this.id = id;
-    }
 
     public Task(String name, long id) {
         this.name = name;
-        this.description = "";
         this.id = id;
     }
 
     public final String getName() {
         return name;
-    }
-
-    public final String getDescription() {
-        return description;
     }
 
     public final long getTaskID() {
