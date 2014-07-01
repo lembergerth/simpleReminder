@@ -27,87 +27,12 @@ public class CLIReminder extends Observable implements Reminder  {
     }
     System.err.println();
   }
-  
-// Start feature SHELL only
-//  public static void main(String[] args) {
-//    CLIReminder reminder = new CLIReminder();
-//
-//    if (args.length < 1) {
-//      String help = reminder.getHelp();
-//      
-//      reminder.updateError(Errors.ERR_WRONG_ARG_NUMBER);
-//      reminder.updateStatus(help);
-//      return;
-//    }
-//
-//    try {
-//      Command cmd = reminder.getCommand(args[0]);
-//
-//      reminder.execute(cmd, args);
-//
-//    } catch (WrongArgumentException e) {
-//      String help = reminder.getHelp();
-//      
-//      reminder.updateError(e.getMessage());
-//      reminder.updateStatus(help);
-//    }
-//  }
-
-  private void execute(Command c, String[] args) {
-    // TODO remove
-  }
-  
-  public Command getCommand(String command) throws WrongArgumentException {
-    try {
-      return Command.valueOf(command.toUpperCase());
-
-    } catch (IllegalArgumentException e) {
-      throw new WrongArgumentException(e);
-    }
-  }
-  
-  private void displayTasks(List tasks) {
-    throw new AssertionError("Not implemented by feature UI");
-//    TaskFormat formatter = new SeparatorFormatter(COLUMN_SEPARATOR);
-//
-//    display("ID" + COLUMN_SEPARATOR + "due date" + COLUMN_SEPARATOR + "name" + COLUMN_SEPARATOR + "description");
-//
-//    Iterator it = tasks.iterator();
-//    while (it.hasNext()) {
-//      Task task = (Task) it.next();
-//      display(formatter.getString(task));
-//    }
-//
-//    display("\n" + tasks.size() + " task(s) displayed.");
-  }
-
+		  
   @Override
   public String getHelp() {
     return "Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
         + "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n"
         + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message";
-  }
-// end feature SHELL only
-  
-  private void listTasks() {
-    List<Task> tasks = getTasks();
-    
-    displayTasks(tasks);
-  }
-
-  private void listTasks(Date lastDate) {
-    List<Task> tasks = getTasks();
-    Iterator<Task> it = tasks.iterator();
-    Task currTask;
-
-    while (it.hasNext()) {
-      currTask = it.next();
-      if (currTask.getDueDate().after(lastDate)) {
-        it.remove();
-      }
-    }
-
-    displayTasks(tasks);
   }
   
   private void updateTaskList(List tasks) {
@@ -148,6 +73,7 @@ public class CLIReminder extends Observable implements Reminder  {
     long id = getNextTaskID();
     
     addTask(new Task(name, id)); // TODO : change Task to allow this
+    return id;
   }
   
   @Override
@@ -194,23 +120,6 @@ public class CLIReminder extends Observable implements Reminder  {
   public List getTasks() {
     return createList(tasks);
   }
-
-  @Override
-  public List getTasks(Date d) {
-    List tasks = getTasks();
-    Iterator taskIterator = tasks.iterator();
-    Task currentTask;
-
-    while (taskIterator.hasNext()) {
-      currentTask = (Task) taskIterator.next();
-
-      if (!currentTask.getDueDate().equals(d)) {
-        taskIterator.remove();
-      }
-    }
-
-    return null;
-  }
  
   private List createList(List list) {
     return new ArrayList(list);
@@ -219,4 +128,5 @@ public class CLIReminder extends Observable implements Reminder  {
   private List createList() {
     return new ArrayList();
   }
+
 }

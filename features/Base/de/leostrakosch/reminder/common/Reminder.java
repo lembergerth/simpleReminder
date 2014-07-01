@@ -13,7 +13,6 @@ public interface Reminder {
 
     List getTasks();
 
-    List getTasks(Date d);
-
     String getHelp();
+
 }
