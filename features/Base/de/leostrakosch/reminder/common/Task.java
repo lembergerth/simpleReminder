@@ -1,7 +1,6 @@
 package de.leostrakosch.reminder.common;
 
 import java.util.Comparator;
-import java.util.Date;
 
 import de.leostrakosch.reminder.common.TaskIDComparator;
 
