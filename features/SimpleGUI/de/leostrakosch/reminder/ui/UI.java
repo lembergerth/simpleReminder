@@ -18,6 +18,8 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.leostrakosch.reminder.common.Reminder;
+import de.leostrakosch.reminder.cli.updates.MessageUpdate;
+import de.leostrakosch.reminder.cli.updates.Update;
 
 /**
  * 
@@ -26,52 +28,80 @@ public class UI extends JFrame implements Observer {
 
   private final Reminder reminder;
 
+  private TaskDisplay mainPanel;
+  
+  private StatusDisplay statusPanel;
+
   public UI(Reminder reminder) {
     this.reminder = reminder;
-    
+
     initialize();
   }
-  
+
   private void initialize() {
     FormLayout layout = new FormLayout("2dlu, fill:pref:grow, 2dlu",
-                                       "2dlu, fill:pref, 2dlu, fill:pref:grow, 2dlu, fill:pref, 2dlu");
+        "2dlu, fill:pref, 2dlu, fill:pref:grow, 2dlu, fill:pref, 2dlu");
     CellConstraints cc = new CellConstraints();
-    
+
     setLayout(layout);
-    
+
     add(createInputPanel(), cc.xy(2, 2));
     add(createMainPanel(), cc.xy(2, 4));
     add(createStatusPanel(), cc.xyw(1, 6, 3));
-    
+
     setLookAndFeel();
   }
-  
+
   private void setLookAndFeel() {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-      
+
     } catch (ClassNotFoundException e) {
     } catch (InstantiationException e) {
     } catch (IllegalAccessException e) {
     } catch (UnsupportedLookAndFeelException e) {
     }
   }
-  
+
   protected Component createInputPanel() {
     return new TaskInputPanel(reminder);
   }
-  
+
   protected Component createMainPanel() {
-    return null;
+    mainPanel = new MainPanel(reminder);
+    return (Component) mainPanel;
   }
-  
+
   protected Component createStatusPanel() {
-    return null;
+    statusPanel = new StatusPanel();
+    return (Component) statusPanel;
   }
 
   @Override
   public void update(Observable observable, Object obj) {
+    Update update;
 
+    if (!(obj instanceof Update)) {
+      throw new AssertionError("Obj not of Type Update");
+    }
+
+    update = (Update) obj;
+
+    switch (update.getType()) {
+      case ERROR:
+        statusPanel.displayError(((MessageUpdate) update).getMsg());
+        break;
+        
+      case STATUS:
+        statusPanel.displayStatus(((MessageUpdate) update).getMsg());
+        break;
+        
+      case TASKS:
+        mainPanel.displayTasks();
+        break;
+      
+      default:
+        throw new AssertionError("Not supported!");
+    }
   }
-
 }
