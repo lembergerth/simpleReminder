@@ -183,7 +183,11 @@ public class CLIReminder implements Reminder {
   }
 
   @Override
-  public String getHelp() {
+  public void displayHelp() {
+    throw new AssertionError("Not implemented by UI feature");
+  }
+
+  private String getHelp() {
     return "Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
         + "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n"
         + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message";
