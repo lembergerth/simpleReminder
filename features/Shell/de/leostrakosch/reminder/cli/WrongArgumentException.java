@@ -1,4 +1,4 @@
-package de.leostrakosch.reminder.common;
+package de.leostrakosch.reminder.cli;
 
 /**
  * Created by leo on 14.05.14.

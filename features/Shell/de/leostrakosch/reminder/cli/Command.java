@@ -1,4 +1,4 @@
-package de.leostrakosch.reminder.common;
+package de.leostrakosch.reminder.cli;
 
 public enum Command {
 	ADD, DELETE, LIST, HELP
