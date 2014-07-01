@@ -2,7 +2,7 @@ package de.leostrakosch.reminder.cli.updates;
 
 public class Update {
   public enum Type {
-    STATUS, ERROR, TASKS, REMINDER
+    STATUS, ERROR, TASKS
   }
   
   private final Type type;
@@ -11,7 +11,7 @@ public class Update {
     this.type = type;
   }
   
-  public boolean hasType(Type type) {
-    return this.type.equals(type);
+  public Type getType() {
+    return type;
   }
 }
