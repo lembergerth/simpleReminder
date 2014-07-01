@@ -28,10 +28,7 @@ public class Shell implements Observer {
 			try {
 				Command cmd = Shell.getCommand(args[0]); 
 				execute(cmd, args);
-			} catch (WrongArgumentException e) {
-				//Debug only
-				e.printStackTrace();
-				
+			} catch (WrongArgumentException e) {				
 				System.out.print("Invalid arguments: ");
 				for (String argument : args) {
 					System.out.print(argument + " ");
