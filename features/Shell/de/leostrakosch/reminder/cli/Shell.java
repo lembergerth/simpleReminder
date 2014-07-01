@@ -29,6 +29,9 @@ public class Shell implements Observer {
 				Command cmd = Shell.getCommand(args[0]); 
 				execute(cmd, args);
 			} catch (WrongArgumentException e) {
+				//Debug only
+				e.printStackTrace();
+				
 				System.out.print("Invalid arguments: ");
 				for (String argument : args) {
 					System.out.print(argument + " ");
@@ -61,8 +64,9 @@ public class Shell implements Observer {
 		switch (command) {
 		case ADD:
 			try {
-				if (args.length <= 2) {
-					long taskId = model.addTask(args[1]);
+				if (args.length >= 2) {
+					
+					long taskId = this.addTask(args); 					
 					displayAddedtask(taskId);
 				} else {
 					throw new ParseException("Invalid amount of arguments", 2);
@@ -84,7 +88,7 @@ public class Shell implements Observer {
 
 		case LIST:
 			try {
-				displayTasks();
+				displayTasks(args);
 
 			} catch (ParseException e) {
 				throw new WrongArgumentException(e);
@@ -97,11 +101,15 @@ public class Shell implements Observer {
 		}
 	}
 
+	private long addTask(String[] args) throws WrongArgumentException {
+		return model.addTask(args[1]);
+	}
+	
 	private void displayAddedtask(long taskId) {
 		System.out.println("Task added to list with id " + taskId);
 	}
 	
-	private void displayTasks() throws ParseException {
+	private void displayTasks(String[] args) throws ParseException {
 		TaskFormat formatter = model.getTaskFormatter();
 		List taskList = model.getTasks();
 
