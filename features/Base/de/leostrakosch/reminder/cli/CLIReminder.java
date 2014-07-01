@@ -5,8 +5,8 @@ import de.leostrakosch.reminder.common.*;
 import de.leostrakosch.reminder.format.SeparatorFormatter;
 import de.leostrakosch.reminder.format.TaskFormat;
 import de.leostrakosch.reminder.persistence.DataManager;
-import de.leostrakosch.reminder.common.Command;
 import de.leostrakosch.reminder.cli.updates.*;
+import de.leostrakosch.reminder.format.*;
 
 
 import java.io.IOException;
@@ -127,6 +127,10 @@ public class CLIReminder extends Observable implements Reminder  {
   
   private List createList() {
     return new ArrayList();
+  }
+  
+  public TaskFormat getTaskFormatter() {
+	  return new SeparatorFormatter(COLUMN_SEPARATOR);
   }
 
 }
