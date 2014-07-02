@@ -1,8 +1,5 @@
 package de.leostrakosch.reminder.common;
 
-/**
- * Created by leo on 14.05.14.
- */
 public class IllegalLineFormatException extends Exception {
     public IllegalLineFormatException() {
     }

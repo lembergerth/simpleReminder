@@ -4,9 +4,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by leo on 14.05.14.
- */
 public final class Configuration {
 
   private Configuration() {

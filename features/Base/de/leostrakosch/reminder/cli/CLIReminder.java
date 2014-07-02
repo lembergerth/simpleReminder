@@ -59,7 +59,6 @@ public class CLIReminder extends Observable implements Reminder  {
       taskId = 1;
       
     } else {
-
       Collections.sort(tasks, comp); // sort by task id
 
       taskId = ((Task) tasks.getLast()).getTaskID() + 1;
@@ -72,7 +71,7 @@ public class CLIReminder extends Observable implements Reminder  {
   public long addTask(String name) {
     long id = getNextTaskID();
     
-    addTask(new Task(name, id)); // TODO : change Task to allow this
+    addTask(new Task(name, id));
     return id;
   }
   

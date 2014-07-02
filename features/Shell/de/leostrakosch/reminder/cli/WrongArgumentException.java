@@ -1,8 +1,5 @@
 package de.leostrakosch.reminder.cli;
 
-/**
- * Created by leo on 14.05.14.
- */
 public class WrongArgumentException extends Exception {
 
 
