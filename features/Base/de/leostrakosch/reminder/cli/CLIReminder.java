@@ -51,7 +51,7 @@ public class CLIReminder extends Observable implements Reminder  {
   }
 
   private long getNextTaskID() {
-    LinkedList tasks = new LinkedList(getTasks());
+    List tasks = getTasks();
     Comparator comp = new TaskIDComparator();
     long taskId;
 
@@ -61,7 +61,7 @@ public class CLIReminder extends Observable implements Reminder  {
     } else {
       Collections.sort(tasks, comp); // sort by task id
 
-      taskId = ((Task) tasks.getLast()).getTaskID() + 1;
+      taskId = ((Task) tasks.get(0)).getTaskID() + 1;
     }
 
     return taskId;
