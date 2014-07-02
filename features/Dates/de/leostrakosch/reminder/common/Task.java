@@ -20,6 +20,10 @@ public class Task {
 		this.dueDate = dueDate;
 		this.id = id;
 	}
+	
+	public void setDate(Date dueDate) {
+	  this.dueDate = dueDate;
+	}
 
 	@Override
 	public int compareTo(Object obj) {

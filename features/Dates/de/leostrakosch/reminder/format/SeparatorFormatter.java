@@ -8,34 +8,34 @@ import de.leostrakosch.reminder.common.IllegalLineFormatException;
 import de.leostrakosch.reminder.common.Task;
 import de.leostrakosch.reminder.common.Date;
 
-/**
- * TODO description
- */
+
 public class SeparatorFormatter {
 
 	@Override
 	public String getString(Task t) {
 		String dueDate = t.getDueDate().getStringRepresentation();
 
-		return t.getTaskID() + separator + dueDate + separator + t.getName()
-				+ separator;
+		return original(t) + dueDate + separator;
 	}
 
 	@Override
 	public Task getTask(String s) throws IllegalLineFormatException {
-
-		List<String> attributes = splitInput(s, separator);
-
-		if (attributes.size() != 3) { // at least taskID and name needed
-			throw new IllegalLineFormatException("Illegal format: " + s);
+    Task task;
+    Date dueDate;
+		List attributes = splitInput(s, separator);
+		String originalString = "";
+		String newAttribute = (String) attributes.get(attributes.size() - 1); // get last attribute
+		
+		for (Object o : attributes) {
+		  originalString += (String) o + separator;
 		}
+		
+		task = original(originalString);
+		
+		dueDate = Date.valueOf(newAttribute);
 
-		long id = Long.valueOf(attributes.get(0));
-		String name = attributes.get(2);
-		Date dueDate;
-
-		dueDate = Date.valueOf(attributes.get(1));
-
-		return new Task(name, dueDate, id);
+		task.setDate(dueDate);
+		
+		return task;
 	}
 }
