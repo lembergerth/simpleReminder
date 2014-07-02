@@ -36,6 +36,8 @@ public class UI extends JFrame implements Observer {
     this.reminder = reminder;
 
     initialize();
+    setDefaultCloseOperation(EXIT_ON_CLOSE);
+    pack();
   }
 
   private void initialize() {

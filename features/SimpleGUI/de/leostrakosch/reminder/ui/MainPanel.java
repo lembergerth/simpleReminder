@@ -37,7 +37,8 @@ public class MainPanel extends JScrollPane implements TaskDisplay {
     CellConstraints cc = new CellConstraints();
 
     for (int i = 0; i < tasks.size(); i++) {
-      layout.appendRow(RowSpec.decode("fill:[pref, 15dlu], 2dlu"));
+      layout.appendRow(RowSpec.decode("fill:[pref, 15dlu]"));
+      layout.appendRow(RowSpec.decode("2dlu"));
     }
 
     mainPanel = new JPanel(layout);

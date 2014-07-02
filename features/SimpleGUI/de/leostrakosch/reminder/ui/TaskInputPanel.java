@@ -13,11 +13,11 @@ import java.awt.event.ActionListener;
 
 import de.leostrakosch.reminder.common.Reminder;
 
-public class TaskInputPanel extends JTextField {
+public class TaskInputPanel extends JPanel {
 
   private static final String DEFAULT_TEXT = "Add a task!";
-  private static final String LAYOUT_COL_SPEC = "fill:pref:grow, 2dlu, fill:[pref, 10dlu]";
-  private static final String LAYOUT_ROW_SPEC = "fill:pref, 2dlu, fill:[pref, 10dlu]";
+  private static final String LAYOUT_COL_SPEC = "fill:pref:grow, 2dlu, fill:pref";
+  private static final String LAYOUT_ROW_SPEC = "fill:pref";
   
   private Reminder reminder;
   
@@ -28,9 +28,8 @@ public class TaskInputPanel extends JTextField {
     this.reminder = reminder;
     
     initialize();
-    setText(DEFAULT_TEXT);
-    
-    addActionListener(createListener());
+    inputField.setText(DEFAULT_TEXT);
+
   }
   
   
@@ -41,24 +40,13 @@ public class TaskInputPanel extends JTextField {
     setLayout(layout);
 
     add(createInputField(), cc.xy(1, 1));
-    add(createAddButton(), cc.xy(3, 3));
+    add(createAddButton(), cc.xy(3, 1));
   }
   
   protected JTextField createInputField() {
     inputField = new JTextField();
     inputField.addActionListener(new AddTaskListener());
     return inputField;
-  }
-
-  protected ActionListener createListener() {
-    return new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        reminder.addTask(getText());
-        setText(DEFAULT_TEXT);
-      }
-    };
   }
   
   protected Component createAddButton() {
@@ -78,6 +66,7 @@ public class TaskInputPanel extends JTextField {
     public void actionPerformed(ActionEvent event) {
       reminder.addTask(inputField.getText());
       inputField.setText(DEFAULT_TEXT);
+      TaskInputPanel.this.requestFocus();
     }
   }
 }
