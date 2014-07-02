@@ -8,7 +8,7 @@ public class DataManager {
   
   private static final String SAVE_PATH = Configuration.APP_DIRECTORY + File.separator + "tasks";
   
-  public static DataManager getInstance() {
+  public static DataManager getInstance(TaskFormat formater) {
     return new BinaryDataManager(SAVE_PATH);
   }
 

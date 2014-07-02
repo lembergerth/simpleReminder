@@ -7,7 +7,7 @@ import de.leostrakosch.reminder.persistence.DataManager;
 
 public class CLIReminder {
 
-  private DataManager manager = DataManager.getInstance();
+  private DataManager manager = DataManager.getInstance(getTaskFormatter());
 
   @Override
   public List getTasks() {

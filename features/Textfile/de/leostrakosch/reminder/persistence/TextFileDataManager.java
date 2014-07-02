@@ -14,9 +14,9 @@ import java.util.Iterator;
 public class TextFileDataManager extends DataManager {
 
   private final File saveFile;
-  private final TaskFormat format;
+  private final TaskFormat formater;
 
-  public TextFileDataManager(String saveFilePath, String separator) {
+  public TextFileDataManager(String saveFilePath, TaskFormat formater) {
     File saveFile= new File(saveFilePath);
     File appDir = saveFile.getParentFile();
     
@@ -25,7 +25,7 @@ public class TextFileDataManager extends DataManager {
     }
     
     this.saveFile= saveFile;
-    format = new SeparatorFormatter(separator);
+    this.formater = formater;
   }
 
   @Override
@@ -40,7 +40,7 @@ public class TextFileDataManager extends DataManager {
 
       for (Iterator it = tasks.iterator(); it.hasNext();) {
         currentTask = (Task) it.next();
-        fileWriter.append(format.getString(currentTask) + "\n");
+        fileWriter.append(formater.getString(currentTask) + "\n");
       }
     } finally {
       if (fileWriter != null)
@@ -59,7 +59,7 @@ public class TextFileDataManager extends DataManager {
 
       while ((line = reader.readLine()) != null) {
         lineNumber++;
-        tasks.add(format.getTask(line));
+        tasks.add(formater.getTask(line));
       }
 
     } catch (IOException e) {
