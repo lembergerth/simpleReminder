@@ -15,7 +15,7 @@ import de.leostrakosch.reminder.common.Task;
  * TODO description
  */
 public class Shell implements Observer {
-	CLIReminder model;
+	private CLIReminder model;
 
 	public Shell(CLIReminder reminder, String[] args) {
 		this.model = reminder;

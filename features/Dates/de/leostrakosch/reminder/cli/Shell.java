@@ -1,6 +1,8 @@
 package de.leostrakosch.reminder.cli;
 
 import de.leostrakosch.reminder.common.Date;
+import de.leostrakosch.reminder.common.FeatureRuntimeError;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 
@@ -8,6 +10,8 @@ import de.leostrakosch.reminder.cli.WrongArgumentException;
 import de.leostrakosch.reminder.common.Task;
 
 public class Shell {
+  private CLIReminder model;
+
 	public long addTask(String[] args) throws WrongArgumentException, ParseException {
 		if(args.length != 3) {
 			throw new WrongArgumentException("Invalid amount of arguments");
@@ -31,5 +35,9 @@ public class Shell {
 		for (Object task : tasks) {
 			display(model.getTaskFormatter().getString(((Task) task)));
 		}
+	}
+	
+	private void display(String message) {
+	  throw new FeatureRuntimeError("Feature shell not active");
 	}
 }
