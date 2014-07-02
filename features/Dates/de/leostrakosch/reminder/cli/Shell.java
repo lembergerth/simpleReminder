@@ -5,6 +5,7 @@ import de.leostrakosch.reminder.common.FeatureRuntimeError;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.Iterator;
 
 import de.leostrakosch.reminder.cli.WrongArgumentException;
 import de.leostrakosch.reminder.common.Task;
@@ -38,6 +39,6 @@ public class Shell {
 	}
 	
 	private void display(String message) {
-	  throw new FeatureRuntimeError("Feature shell not active");
+	  System.out.println(message);
 	}
 }

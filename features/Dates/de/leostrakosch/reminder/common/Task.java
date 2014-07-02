@@ -10,11 +10,6 @@ public class Task {
 
 	private Date dueDate;
 
-	public Task(String name, long id) {
-		throw new FeatureRuntimeError("date",
-				"Feature Date is choosen. never use Task Constructor without a date");
-	}
-
 	public Task(String name, Date dueDate, long id) {
 		this.name = name;
 		this.dueDate = dueDate;

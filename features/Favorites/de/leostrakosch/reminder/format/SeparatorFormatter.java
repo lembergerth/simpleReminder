@@ -1,5 +1,7 @@
 package de.leostrakosch.reminder.format;
 
+import java.util.Iterator;
+
 
 public class SeparatorFormatter {
 
@@ -17,11 +19,18 @@ public class SeparatorFormatter {
     Task task;
     boolean isFavorite;
     List attributes = splitInput(s, separator);
+    String currString;
     String originalString = "";
     String newAttribute = (String) attributes.get(attributes.size() -1); // get last attribute
     
-    for (Object o : attributes) {
-      originalString += (String) o + separator;
+    for (Iterator it = attributes.iterator(); it.hasNext(); ) {
+      currString = (String) it.next();
+      
+      if (!it.hasNext()) {
+        continue; // don't take the last argument
+      }
+      
+      originalString += currString + separator;
     }
     task = original(originalString);
     
