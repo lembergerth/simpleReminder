@@ -71,8 +71,7 @@ public class CLIReminder extends Observable implements Reminder  {
   public long addTask(String name) {
     long id = getNextTaskID();
     
-    addTask(new Task(name, id));
-    return id;
+    return addTask(new Task(name, id));
   }
   
   @Override
@@ -81,7 +80,7 @@ public class CLIReminder extends Observable implements Reminder  {
 
     tasks.add(t);
     commit(tasks);
-
+    
     return t.getTaskID();
   }
 
@@ -112,6 +111,8 @@ public class CLIReminder extends Observable implements Reminder  {
 
   private boolean commit(List tasks) {
     this.tasks = createList(tasks);
+    updateTaskList(tasks);
+    
     return true;
   }
 
