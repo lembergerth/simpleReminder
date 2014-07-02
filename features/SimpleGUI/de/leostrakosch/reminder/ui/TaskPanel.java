@@ -20,13 +20,10 @@ public class TaskPanel extends JPanel {
   protected static final String DEFAULT_COL_SPEC = "fill:pref:grow, 3dlu, fill:pref";
   protected static final String DEFAULT_ROW_SPEC = "fill:pref";
   
-  protected static final String COL_SPEC = DEFAULT_COL_SPEC;
-  protected static final String ROW_SPEC = DEFAULT_ROW_SPEC;
+  private final CLIReminder reminder;
+  private final long taskID;
   
-  private Reminder reminder;
-  private long taskID;
-  
-  public TaskPanel(Task t, Reminder reminder) {
+  public TaskPanel(Task t, CLIReminder reminder) {
     this.reminder = reminder;
     taskID = t.getTaskID();
     
@@ -55,8 +52,8 @@ public class TaskPanel extends JPanel {
     return button;
   }
   
-  private LayoutManager createLayout() {
-    return new FormLayout(COL_SPEC, ROW_SPEC);
+  private FormLayout createLayout() {
+    return new FormLayout(DEFAULT_COL_SPEC, DEFAULT_ROW_SPEC);
     
   }
 }

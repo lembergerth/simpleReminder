@@ -12,6 +12,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.common.Reminder;
 import de.leostrakosch.reminder.common.Task;
 
@@ -54,6 +55,6 @@ public class MainPanel extends JScrollPane implements TaskDisplay {
   }
 
   private Component createTaskPanel(Task task) {
-    return new TaskPanel(task, reminder);
+    return new TaskPanel(task, (CLIReminder) reminder);
   }
 }
