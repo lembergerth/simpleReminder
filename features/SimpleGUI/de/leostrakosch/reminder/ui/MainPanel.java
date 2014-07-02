@@ -54,6 +54,6 @@ public class MainPanel extends JScrollPane implements TaskDisplay {
   }
 
   private Component createTaskPanel(Task task) {
-    return new JLabel(task.getName());
+    return new TaskPanel(task, reminder);
   }
 }
