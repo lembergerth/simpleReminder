@@ -37,7 +37,7 @@ public class CLIReminder extends Observable implements Reminder  {
   
   private void updateTaskList(List tasks) {
     setChanged();
-    notifyObservers(new TaskUpdate(Update.Type.TASKS, tasks));
+    notifyObservers(new TaskUpdate(Update.Type.TASKS));
   }
   
   private void updateStatus(String msg) {
