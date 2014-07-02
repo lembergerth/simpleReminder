@@ -1,6 +1,7 @@
 package de.leostrakosch.reminder.common;
 
 import java.util.List;
+import de.leostrakosch.reminder.format.TaskFormat;
 
 public interface Reminder {
 
@@ -13,5 +14,7 @@ public interface Reminder {
     List getTasks();
 
     String getHelp();
+    
+    TaskFormat getTaskFormatter();
 
 }

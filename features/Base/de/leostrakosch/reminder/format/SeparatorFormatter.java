@@ -28,14 +28,14 @@ public class SeparatorFormatter implements TaskFormat {
   @Override
   public Task getTask(String s) throws IllegalLineFormatException {
 
-    List<String> attributes = splitInput(s, separator);
+    List attributes = splitInput(s, separator);
 
     if (attributes.size() != 2) { // at least taskID and name needed
       throw new IllegalLineFormatException("Illegal format: " + s);
     }
 
-    long id = Long.valueOf(attributes.get(0));
-    String name = attributes.get(1);
+    long id = Long.valueOf((String) attributes.get(0));
+    String name = (String) attributes.get(1);
     return new Task(name, id);
   }
 
