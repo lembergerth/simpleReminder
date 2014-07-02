@@ -10,6 +10,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import de.leostrakosch.reminder.common.Reminder;
 
@@ -29,7 +31,6 @@ public class TaskInputPanel extends JPanel {
     
     initialize();
     inputField.setText(DEFAULT_TEXT);
-
   }
   
   
@@ -46,6 +47,24 @@ public class TaskInputPanel extends JPanel {
   protected JTextField createInputField() {
     inputField = new JTextField();
     inputField.addActionListener(new AddTaskListener());
+    
+    inputField.addFocusListener(new FocusListener() {
+      
+      @Override
+      public void focusLost(FocusEvent arg0) {
+        if (inputField.getText().isEmpty()) {
+          inputField.setText(DEFAULT_TEXT);
+        }
+      }
+      
+      @Override
+      public void focusGained(FocusEvent arg0) {
+        if (inputField.getText().equals(DEFAULT_TEXT)) {
+          inputField.setText("");
+        }
+      }
+    });
+    
     return inputField;
   }
   
