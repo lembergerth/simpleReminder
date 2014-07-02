@@ -35,4 +35,9 @@ public class Task implements Comparable {
         task = (Task) obj;
         return comp.compare(this, obj);
     }
+    
+    @Override
+    public String toString() {
+      return "Task ID: [" + id + "]" + ", Name: [" + name + "]";
+    }
 }
