@@ -9,8 +9,7 @@ public class CLIReminder {
 
   private DataManager manager = DataManager.getInstance(getTaskFormatter());
 
-  @Override
-  public List getTasks() {
+  private List getTaskList() {
     try {
       return manager.getTasks();
       

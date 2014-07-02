@@ -36,7 +36,6 @@ public class CLIReminder extends Observable implements Reminder  {
   }
   
   private void updateTaskList(List tasks) {
-    Collections.sort(tasks);
     setChanged();
     notifyObservers(new TaskUpdate(Update.Type.TASKS, tasks));
   }
@@ -119,6 +118,15 @@ public class CLIReminder extends Observable implements Reminder  {
 
   @Override
   public List getTasks() {
+    List tasks = getTaskList();
+    
+    Collections.sort(tasks);
+    Collections.reverse(tasks); // highest first
+    
+    return tasks;
+  }
+
+  private List getTaskList() {
     return createList(tasks);
   }
  
