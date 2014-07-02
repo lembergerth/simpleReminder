@@ -5,11 +5,11 @@ import java.util.Iterator;
 
 public class SeparatorFormatter {
 
-  private static final char FAVORITE_MARKER = 'F';
+  private static final String FAVORITE_MARKER = "F";
   
   @Override
   public String getString(Task t) {
-    char isFavorite = t.isFavorite() ? FAVORITE_MARKER : ' ';
+    String isFavorite = t.isFavorite() ? FAVORITE_MARKER : " ";
     
     return original(t) + isFavorite + separator;
   }
@@ -32,6 +32,7 @@ public class SeparatorFormatter {
       
       originalString += currString + separator;
     }
+    
     task = original(originalString);
     
     isFavorite = newAttribute.equals(FAVORITE_MARKER);
