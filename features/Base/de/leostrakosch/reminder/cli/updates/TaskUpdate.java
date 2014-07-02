@@ -11,5 +11,7 @@ public class TaskUpdate extends Update {
     this.tasks = tasks;
   }
   
-  
+  public List getTasks() {
+    return tasks;
+  }
 }
