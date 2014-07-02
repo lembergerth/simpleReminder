@@ -15,12 +15,18 @@ import de.leostrakosch.reminder.cli.Shell;
 *
 *
 */
-public class CLIReminder extends Observable implements Reminder{
-	
-	public static void main(String[] args) {
-		CLIReminder reminder = new CLIReminder();
-		Shell shellUI = new Shell(reminder, args);
-		
-		reminder.addObserver(shellUI);
-	}
+public class CLIReminder extends Observable implements Reminder {
+
+  public static void main(String[] args) {
+    CLIReminder reminder = new CLIReminder();
+
+    if (args.length == 0) {
+      original(args);
+      
+    } else {
+      Shell shellUI = new Shell(reminder, args);
+
+      reminder.addObserver(shellUI);
+    }
+  }
 }
