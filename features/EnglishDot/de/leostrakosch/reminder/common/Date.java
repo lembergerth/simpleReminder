@@ -6,6 +6,8 @@ import java.util.StringTokenizer;
  * TODO description
  */
 public class Date {
+  public final static String FORMAT = "MM.DD.YYYY";
+  
 	private final String DELIM = ".";
 
 	public void interpretDateRepresentation(StringTokenizer st)
