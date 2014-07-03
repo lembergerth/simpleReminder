@@ -15,7 +15,7 @@ public class ReminderUpdate {
   }
   
   public ReminderUpdate(List tasks) {
-    tasks = new LinkedList(tasks);
+    this.tasks = new LinkedList(tasks);
   }
   
   public List getTasks() {

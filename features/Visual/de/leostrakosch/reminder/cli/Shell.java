@@ -16,7 +16,7 @@ public class Shell implements Observer {
       ReminderUpdate update = (ReminderUpdate) arg1;
       List dueTasks = update.getTasks();
       Task currentTask;
-      
+
       for (Object o : dueTasks) {
         currentTask = (Task) o;
         String taskName = currentTask.getName();

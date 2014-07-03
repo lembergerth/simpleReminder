@@ -20,9 +20,10 @@ public class CLIReminder extends Observable implements Reminder {
       original(args);
       
     } else {
-      Shell shellUI = new Shell(reminder, args);
+      Shell shellUI = new Shell(reminder);
 
       reminder.addObserver(shellUI);
+      shellUI.execute(args);
     }
   }
 }

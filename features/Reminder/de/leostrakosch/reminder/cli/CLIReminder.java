@@ -18,7 +18,6 @@ public class CLIReminder extends Observable {
     Date today = getTodaysDate();
     Date currTaskDate;
     
-    System.out.println(today.getStringRepresentation());
     for (Object o : allTasks) {
       currTask = (Task) o;
       
