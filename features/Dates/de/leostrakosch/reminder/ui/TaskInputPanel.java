@@ -13,6 +13,8 @@ import de.leostrakosch.reminder.common.Date;
 
 public class TaskInputPanel extends JPanel {
 
+  private static final String DATE_FORMAT = Date.FORMAT.toUpperCase();
+  
   private JTextField inputField;
   private JTextField dateField;
   private CLIReminder reminder;
@@ -29,20 +31,20 @@ public class TaskInputPanel extends JPanel {
   }
   
   protected Component createDateInput() {
-    dateField = new JTextField(Date.FORMAT, 10);
+    dateField = new JTextField(DATE_FORMAT, 10);
     
     dateField.addFocusListener(new FocusListener() {
       
       @Override
       public void focusLost(FocusEvent arg0) {
         if (dateField.getText().isEmpty()) {
-          dateField.setText(Date.FORMAT);
+          dateField.setText(DATE_FORMAT);
         }
       }
       
       @Override
       public void focusGained(FocusEvent arg0) {
-        if (dateField.getText().equals(Date.FORMAT)) {
+        if (dateField.getText().equals(DATE_FORMAT)) {
           dateField.setText("");
         }
       }
