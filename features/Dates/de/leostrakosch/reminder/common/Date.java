@@ -1,5 +1,6 @@
 package de.leostrakosch.reminder.common;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.StringTokenizer;
 
@@ -8,7 +9,11 @@ import de.leostrakosch.reminder.common.FeatureRuntimeError;
 /**
  * TODO description
  */
-public class Date {
+public class Date implements Serializable {
+
+  private static final long serialVersionUID = 2623834575450619003L;
+
+
 	private final String DELIM = "";
 	private byte day;
 	private byte month;
