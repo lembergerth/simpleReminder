@@ -24,7 +24,7 @@ public class CLIReminder extends Observable {
       
       currTaskDate = currTask.getDueDate();
       
-      if (currTaskDate.compareTo(today) >= 0) {
+      if (currTaskDate.compareTo(today) <= 0) {
           dueTasks.add(currTask);
       }
     }
@@ -39,7 +39,7 @@ public class CLIReminder extends Observable {
   private Date getTodaysDate() {
     SimpleDateFormat dateFormat = new SimpleDateFormat(Date.FORMAT);
     java.util.Date today = new java.util.Date();
-    
+
     return new Date(dateFormat.format(today));
   }
   
