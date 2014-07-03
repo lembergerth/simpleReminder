@@ -1,21 +1,26 @@
 <?xml version="1.0"?>
-<project name="SimpleReminder" basedir="." default="build">
+<project name="SimpleReminder" basedir="." default="build-jar">
 
-<target name="compile">
+<path id="project.classpath">
+	<pathelement location="src" />
+	<fileset dir="lib" includes="**/*.jar" />
+</path>
+
+<target name="build">
     <mkdir dir="out/classes" />
-    <javac destdir="out/classes" source="1.7" target="1.7" failonerror="true">
+    <javac destdir="out/classes" source="1.7" target="1.7" failonerror="true" classpathref="project.classpath">
         <src path="src" />
     </javac>
 </target>
 
-<target name="build">
+<target name="build-jar" depends="build">
     <mkdir dir="out/jar" />
-    <antcall target="compile" />
     <jar destfile="out/jar/SimpleReminder.jar">
         <manifest>
             <attribute name="Main-Class" value="de.leostrakosch.reminder.cli.CLIReminder" />
         </manifest>
         <fileset dir="out/classes" />
+	<zipgroupfileset dir="lib" includes="**/*.jar" />
     </jar>
 </target>
 
