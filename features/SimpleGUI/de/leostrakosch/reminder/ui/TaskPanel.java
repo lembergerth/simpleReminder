@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.leostrakosch.reminder.common.Reminder;
+import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.common.Task;
 
 public class TaskPanel extends JPanel {
@@ -34,7 +34,7 @@ public class TaskPanel extends JPanel {
   private void addComponents(Task t) {
     CellConstraints cc = new CellConstraints();
     
-    add(new JLabel(t.getName()), cc.xy(1, 1));
+    add(new JLabel(t.getName()), cc.xy(1, 1, CellConstraints.CENTER, CellConstraints.DEFAULT));
     add(createDeleteButton(), cc.xy(3, 1));
   }
   
