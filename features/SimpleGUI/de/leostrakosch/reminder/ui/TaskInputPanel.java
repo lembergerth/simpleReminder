@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.common.Reminder;
 
 public class TaskInputPanel extends JPanel {
@@ -21,11 +22,11 @@ public class TaskInputPanel extends JPanel {
   private static final String LAYOUT_COL_SPEC = "fill:pref:grow, 2dlu, fill:pref";
   private static final String LAYOUT_ROW_SPEC = "fill:pref";
   
-  private Reminder reminder;
+  private CLIReminder reminder;
   
   private JTextField inputField;
 
-  public TaskInputPanel(Reminder reminder) {
+  public TaskInputPanel(CLIReminder reminder) {
 
     this.reminder = reminder;
     
@@ -44,7 +45,7 @@ public class TaskInputPanel extends JPanel {
     add(createAddButton(), cc.xy(3, 1));
   }
   
-  protected JTextField createInputField() {
+  protected Component createInputField() {
     inputField = new JTextField();
     inputField.addActionListener(new AddTaskListener());
     
@@ -81,6 +82,7 @@ public class TaskInputPanel extends JPanel {
   }
   
   protected class AddTaskListener implements ActionListener {
+    
     @Override
     public void actionPerformed(ActionEvent event) {
       reminder.addTask(inputField.getText());

@@ -18,6 +18,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.leostrakosch.reminder.common.Reminder;
+import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.cli.updates.MessageUpdate;
 import de.leostrakosch.reminder.cli.updates.Update;
 
@@ -66,7 +67,7 @@ public class UI extends JFrame implements Observer {
   }
 
   protected Component createInputPanel() {
-    return new TaskInputPanel(reminder);
+    return new TaskInputPanel((CLIReminder) reminder);
   }
 
   protected Component createMainPanel() {
