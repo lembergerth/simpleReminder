@@ -30,24 +30,26 @@ public class CLIReminder extends Observable implements Reminder  {
 		  
   @Override
   public String getHelp() {
-    return "Possible commands are:\n" + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
-        + "\tlist [date]\t\t- lists all currently existing tasks [up to the given date]\n"
-        + "\tdelete <task_id>\t\t- deletes the task with the given id\n" + "\thelp\t\t- shows this message";
+    return "Possible commands are:\n"
+        + "\tadd <task> <date>\t\t- adds the given task for the given date\n"
+        + "\tlist [date]\t\t\t- lists all currently existing tasks [up to the given date]\n"
+        + "\tdelete <task_id>\t\t- deletes the task with the given id\n"
+        + "\thelp\t\t\t\t- shows this message";
   }
   
   private void updateTaskList(List tasks) {
     setChanged();
-    notifyObservers(new TaskUpdate(Update.Type.TASKS));
+    notifyObservers(new TaskUpdate());
   }
   
   private void updateStatus(String msg) {
     setChanged();
-    notifyObservers(new MessageUpdate(Update.Type.STATUS, msg));
+    notifyObservers(new MessageUpdate(MessageUpdate.Type.STATUS, msg));
   }
   
   private void updateError(String msg) {
     setChanged();
-    notifyObservers(new MessageUpdate(Update.Type.ERROR, msg));
+    notifyObservers(new MessageUpdate(MessageUpdate.Type.ERROR, msg));
   }
 
   private long getNextTaskID() {

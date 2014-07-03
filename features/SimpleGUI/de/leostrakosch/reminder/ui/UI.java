@@ -20,6 +20,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import de.leostrakosch.reminder.common.Reminder;
 import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.cli.updates.MessageUpdate;
+import de.leostrakosch.reminder.cli.updates.TaskUpdate;
 import de.leostrakosch.reminder.cli.updates.Update;
 
 /**
@@ -82,15 +83,11 @@ public class UI extends JFrame implements Observer {
 
   @Override
   public void update(Observable observable, Object obj) {
-    Update update;
-
-    if (!(obj instanceof Update)) {
-      throw new AssertionError("Obj not of Type Update");
-    }
-
-    update = (Update) obj;
-
-    switch (update.getType()) {
+    
+    if (obj instanceof MessageUpdate) {
+      MessageUpdate update = (MessageUpdate) obj;
+      
+      switch (update.getType()) {
       case ERROR:
         statusPanel.displayError(((MessageUpdate) update).getMsg());
         break;
@@ -98,13 +95,13 @@ public class UI extends JFrame implements Observer {
       case STATUS:
         statusPanel.displayStatus(((MessageUpdate) update).getMsg());
         break;
-        
-      case TASKS:
-        mainPanel.displayTasks();
-        break;
+      }
       
-      default:
-        throw new AssertionError("Not supported!");
+    } else if (obj instanceof TaskUpdate) {
+      mainPanel.displayTasks();
+    
+    } else {
+      original(observable, obj);
     }
   }
 }

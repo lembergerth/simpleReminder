@@ -1,14 +1,21 @@
 package de.leostrakosch.reminder.cli.updates;
 
-public class MessageUpdate extends Update {
+public class MessageUpdate {
 
-  private String msg;
+  public enum Type { ERROR, STATUS }
   
-  public MessageUpdate(Update.Type type, String msg) {
-    super(type);
+  private String msg;
+  private Type type;
+  
+  public MessageUpdate(Type type, String msg) {
+    this.type = type;
     this.msg = msg;
   }
 
+  public Type getType() {
+    return type;
+  }
+  
   public String getMsg() {
     return msg;
   }
