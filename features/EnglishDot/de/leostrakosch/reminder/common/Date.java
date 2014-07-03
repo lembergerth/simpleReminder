@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
  * TODO description
  */
 public class Date {
-  public final static String FORMAT = "MM.DD.YYYY";
+  public final static String FORMAT = "MM.dd.YYYY";
   
 	private final String DELIM = ".";
 
