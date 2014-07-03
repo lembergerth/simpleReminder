@@ -11,10 +11,6 @@ import de.leostrakosch.reminder.common.Task;
 import de.leostrakosch.reminder.cli.WrongArgumentException;
 import de.leostrakosch.reminder.cli.Shell;
 
-/**
-*
-*
-*/
 public class CLIReminder extends Observable implements Reminder {
 
   public static void main(String[] args) {

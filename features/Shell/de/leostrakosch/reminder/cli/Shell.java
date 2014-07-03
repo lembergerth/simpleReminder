@@ -119,9 +119,4 @@ public class Shell implements Observer {
 	private void display(String message) {
 		System.out.println(message);
 	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-	  throw new AssertionError("Unsupported update " + arg1);
-	}
 }

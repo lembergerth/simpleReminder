@@ -1,6 +1,5 @@
 package de.leostrakosch.reminder.cli;
 
-import de.leostrakosch.reminder.cli.updates.Update;
 import de.leostrakosch.reminder.common.Task;
 
 public class CLIReminder {

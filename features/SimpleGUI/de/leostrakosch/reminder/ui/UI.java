@@ -21,11 +21,7 @@ import de.leostrakosch.reminder.common.Reminder;
 import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.cli.updates.MessageUpdate;
 import de.leostrakosch.reminder.cli.updates.TaskUpdate;
-import de.leostrakosch.reminder.cli.updates.Update;
 
-/**
- * 
- */
 public class UI extends JFrame implements Observer {
 
   private final Reminder reminder;
@@ -79,6 +75,14 @@ public class UI extends JFrame implements Observer {
   protected Component createStatusPanel() {
     statusPanel = new StatusPanel();
     return (Component) statusPanel;
+  }
+  
+  private void displayError(String msg) {
+    statusPanel.displayError(msg);
+  }
+  
+  private void displayStatus(String msg) {
+    statusPanel.displayStatus(msg);
   }
 
   @Override
