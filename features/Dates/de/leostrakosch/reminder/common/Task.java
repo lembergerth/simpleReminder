@@ -24,15 +24,16 @@ public class Task {
 	public int compareTo(Object obj) {
 		if (obj == null) {
 			throw new AssertionError("Task not compareable to " + "null");
+			
 		} else if (!(obj instanceof Task)) {
 			throw new AssertionError("Task not compareable to "
 					+ obj.getClass());
 		}
 		Task compareTask = (Task) obj;
-		return this.dueDate.compareTo(compareTask.getDueDate());
+		return dueDate.compareTo(compareTask.getDueDate());
 	}
 
 	public Date getDueDate() {
-		return this.dueDate;
+		return dueDate;
 	}
 }
