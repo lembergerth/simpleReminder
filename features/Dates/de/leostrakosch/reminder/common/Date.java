@@ -41,7 +41,7 @@ public class Date implements Serializable {
 	}
 
 	private int getDateRepresentation() {
-		return ((int) this.year) * 1000 + ((int) month) * 10 + ((int) day);
+		return ((int) this.year) * 10000 + ((int) month) * 100 + ((int) day);
 	}
 
 	public String getStringRepresentation() {
