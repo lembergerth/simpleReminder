@@ -23,8 +23,9 @@ public class CLIReminder extends Observable {
       
       currTaskDate = currTask.getDueDate();
       
-      if (currTaskDate.compareTo(today) <= 0) {
+      if (currTaskDate.compareTo(today) <= 0 && !currTask.isNoted()) {
           dueTasks.add(currTask);
+          currTask.setNoted();
       }
     }
     
