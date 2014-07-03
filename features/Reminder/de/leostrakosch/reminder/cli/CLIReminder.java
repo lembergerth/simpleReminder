@@ -44,7 +44,6 @@ public class CLIReminder extends Observable {
   }
   
   private void sendReminderUpdate(List dueTasks) {
-    setChanged();
-    notifyObservers(new ReminderUpdate(dueTasks));
+    // do nothing
   }
 }
