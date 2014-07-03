@@ -20,7 +20,6 @@ public class MainPanel extends JScrollPane implements TaskDisplay {
 
   private static final String LAYOUT_COL_SPEC = "fill:pref:grow";
 
-  private JPanel innerPanel;
   private Reminder reminder;
 
   public MainPanel(Reminder reminder) {
