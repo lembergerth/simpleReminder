@@ -1,6 +1,7 @@
 package de.leostrakosch.reminder.cli;
 
 import java.util.Observable;
+import java.util.Observer;
 
 public class Shell implements Observer {
   
