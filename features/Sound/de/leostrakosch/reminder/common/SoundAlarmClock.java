@@ -25,6 +25,7 @@ public class SoundAlarmClock implements Observer{
 	public final File audiofile;
 	public final long alarmTime = 5 * 1000;
 	public int duetaskcount = 0;
+	private AudioClip playingSound = null;
 	
 	public SoundAlarmClock() throws URISyntaxException {
 		audioFilePath = SoundAlarmClock.class.getProtectionDomain()
@@ -34,11 +35,15 @@ public class SoundAlarmClock implements Observer{
 		audiofile = new File(audioFilePath);
 	}
 
-	public void activateAlarm() {
+	public void activateAlarm() throws MalformedURLException {
 		System.out.println(audiofile.getPath());
 		TimerTask timerTask = null;
-		try {
+		if(playingSound != null) {
+			playingSound.stop();
+			playingSound = null;
+		}
 		final AudioClip sound = Applet.newAudioClip(audiofile.toURI().toURL());
+		playingSound = sound;
 		sound.play();
 		
 		timerTask = new TimerTask() {
@@ -48,9 +53,7 @@ public class SoundAlarmClock implements Observer{
 				sound.stop();
 			}
 		};
-		}catch (MalformedURLException e) {
-			System.out.println("Mist passiert");
-		}
+
 		
 		Timer alarmDuration = new Timer(true);
 		alarmDuration.schedule(timerTask, alarmTime);
@@ -64,7 +67,11 @@ public class SoundAlarmClock implements Observer{
 			ReminderUpdate tasksUpdate = (ReminderUpdate) arg1;
 			List tasks = tasksUpdate.getTasks();
 			if(!tasks.isEmpty()) {
-				activateAlarm();
+				try{
+					activateAlarm();
+				}catch (MalformedURLException e) {
+					System.err.println("Could not find path to sound file");
+				}
 			}
 		}
 	}
