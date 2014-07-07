@@ -40,4 +40,20 @@ public class Task implements Comparable {
     public String toString() {
       return "Task ID: [" + id + "]" + ", Name: [" + name + "]";
     }
+    
+    @Override
+    public boolean equals(Object o) {
+      if (o.getClass() != getClass()) {
+        return false;
+      }
+      
+      Task t = (Task) o;
+      
+      return id == t.id;
+    }
+    
+    @Override
+    public int hashCode() {
+      return (int) id; // unique
+    }
 }
