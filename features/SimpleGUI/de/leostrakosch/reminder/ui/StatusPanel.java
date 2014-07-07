@@ -22,6 +22,7 @@ public class StatusPanel extends JPanel implements StatusDisplay {
   
   @Override
   public void displayStatus(String msg) {
+    textLabel.setForeground(Color.BLACK);
     textLabel.setText(msg);
   }
   
