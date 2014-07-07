@@ -9,6 +9,7 @@ import de.leostrakosch.reminder.common.Task;
 
 public class CLIReminder extends Observable {
 
+  private final Set remindedTasks = new HashSet();
   
   public List getTasks() {
     List allTasks = original();
@@ -23,9 +24,9 @@ public class CLIReminder extends Observable {
       
       currTaskDate = currTask.getDueDate();
       
-      if (currTaskDate.compareTo(today) <= 0 && !currTask.isNoted()) {
+      if (currTaskDate.compareTo(today) <= 0 && !remindedTasks.contains(currTask)) {
           dueTasks.add(currTask);
-          currTask.setNoted();
+          remindedTasks.add(currTask);
       }
     }
     
