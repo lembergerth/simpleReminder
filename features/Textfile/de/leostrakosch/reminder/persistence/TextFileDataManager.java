@@ -6,7 +6,12 @@ import de.leostrakosch.reminder.format.TaskFormat;
 import de.leostrakosch.reminder.common.Configuration;
 import de.leostrakosch.reminder.common.IllegalLineFormatException;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Iterator;
