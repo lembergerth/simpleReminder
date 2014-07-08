@@ -13,9 +13,6 @@ import de.leostrakosch.reminder.common.Task;
 
 import java.util.List;
 
-/**
- * TODO description
- */
 public class Shell implements Observer {
 	private CLIReminder model;
 
@@ -45,7 +42,6 @@ public class Shell implements Observer {
 		try {
 			if (args.length < 1) {
 				// @see simpleGui
-				// TODO GUI musst override the reaction to no arguement
 				this.reactToNoArguments();
 
 			} else {

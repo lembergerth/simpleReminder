@@ -6,9 +6,6 @@ import java.util.Observable;
 import de.leostrakosch.reminder.cli.updates.ReminderUpdate;
 import de.leostrakosch.reminder.common.Task;
 
-/**
- * TODO description
- */
 public class UI {
 
   @Override

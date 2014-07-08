@@ -8,9 +8,6 @@ import de.leostrakosch.reminder.common.Date;
 import de.leostrakosch.reminder.common.SoundAlarmClock;
 import de.leostrakosch.reminder.common.Task;
 
-/**
- * TODO description
- */
 public class CLIReminder extends Observable {
 	private SoundAlarmClock soundAlarm;
 

@@ -1,7 +1,7 @@
 package de.leostrakosch.reminder.common;
 
 import java.util.Observable;
-import java.util.Timer;
+import java.util.Timer; 
 import java.util.TimerTask;
 import java.util.Observer;
 import java.util.List;
@@ -17,9 +17,6 @@ import java.util.TimerTask;
 
 import de.leostrakosch.reminder.cli.updates.ReminderUpdate;
 
-/**
- * 
- */
 public class SoundAlarmClock implements Observer{
 
 	public final String audioFilePath;

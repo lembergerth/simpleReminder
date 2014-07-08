@@ -2,9 +2,6 @@ package de.leostrakosch.reminder.common;
 
 import java.util.StringTokenizer;
 
-/**
- * TODO description
- */
 public class Date {
   public final static String FORMAT = "dd.MM.YYYY";
 	private final String DELIM = ".";
