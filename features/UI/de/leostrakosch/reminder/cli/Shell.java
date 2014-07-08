@@ -15,8 +15,5 @@ public class Shell implements Observer {
   private void display(String message) {
     throw new FeatureRuntimeError("Unsupported - no feature supports this");
   }
-  
-  public void execute(String[] args) {
-    throw new FeatureRuntimeError("Unsupported - no feature supports this");
-  }
+
 }
