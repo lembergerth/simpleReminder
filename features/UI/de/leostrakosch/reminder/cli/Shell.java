@@ -3,6 +3,8 @@ package de.leostrakosch.reminder.cli;
 import java.util.Observable;
 import java.util.Observer;
 
+import de.leostrakosch.reminder.common.FeatureRuntimeError;
+
 public class Shell implements Observer {
   
   @Override
@@ -11,6 +13,10 @@ public class Shell implements Observer {
   }
   
   private void display(String message) {
-    throw new AssertionError("Unsupported - no feature supports this");
+    throw new FeatureRuntimeError("Unsupported - no feature supports this");
+  }
+  
+  public void execute(String[] args) {
+    throw new FeatureRuntimeError("Unsupported - no feature supports this");
   }
 }
