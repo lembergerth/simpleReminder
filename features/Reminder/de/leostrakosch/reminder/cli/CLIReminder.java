@@ -2,10 +2,13 @@ package de.leostrakosch.reminder.cli;
 
 import java.text.SimpleDateFormat;
 import java.util.Observable;
+import java.util.Set;
+import java.util.HashSet;
 
 import de.leostrakosch.reminder.cli.updates.ReminderUpdate;
 import de.leostrakosch.reminder.common.Date;
 import de.leostrakosch.reminder.common.Task;
+
 
 public class CLIReminder extends Observable {
 

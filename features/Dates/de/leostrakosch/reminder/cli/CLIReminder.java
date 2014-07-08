@@ -5,7 +5,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Comparator;
 
 import de.leostrakosch.reminder.common.Configuration;
 import de.leostrakosch.reminder.common.FeatureRuntimeError;

@@ -4,20 +4,18 @@ import de.leostrakosch.reminder.common.*;
 
 import de.leostrakosch.reminder.format.SeparatorFormatter;
 import de.leostrakosch.reminder.format.TaskFormat;
-import de.leostrakosch.reminder.persistence.DataManager;
 import de.leostrakosch.reminder.cli.updates.*;
 import de.leostrakosch.reminder.format.*;
 
-
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.*;
+import java.util.Collections;
 
 public class CLIReminder extends Observable implements Reminder  {
 
+  // Separator for displaying a tasks attributes
   private static final String COLUMN_SEPARATOR = " | ";
 
+  // all tasks
   private List tasks = createList();
   
   public static void main(String[] args) {
