@@ -6,10 +6,11 @@ import java.util.TimerTask;
 import java.util.Observer;
 import java.util.List;
 
+import java.io.File;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
-import java.io.*;
+
 import java.net.URISyntaxException;
 import java.net.MalformedURLException;
 import java.util.TimerTask;
