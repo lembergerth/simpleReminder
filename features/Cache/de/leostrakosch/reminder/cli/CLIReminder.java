@@ -7,9 +7,7 @@ import de.leostrakosch.reminder.common.Task;
 import de.leostrakosch.reminder.persistence.DataManager;
 import de.leostrakosch.reminder.persistence.TaskCache;
 
-/**
- * TODO description
- */
+
 public class CLIReminder {
 
   private TaskCache cache;

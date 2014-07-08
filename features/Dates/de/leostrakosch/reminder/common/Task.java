@@ -3,9 +3,6 @@ package de.leostrakosch.reminder.common;
 import de.leostrakosch.reminder.common.FeatureRuntimeError;
 import de.leostrakosch.reminder.common.Date;
 
-/**
- * TODO description
- */
 public class Task {
 
 	private Date dueDate;
