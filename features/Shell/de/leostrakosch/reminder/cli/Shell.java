@@ -119,4 +119,9 @@ public class Shell implements Observer {
   private void display(String message) {
     System.out.println(message);
   }
+  
+  @Override
+  public void update(Observable observable, Object obj) {
+    // Do nothing - needed information is directly demanded during execution
+  }
 }
