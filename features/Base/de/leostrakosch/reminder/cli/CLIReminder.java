@@ -1,14 +1,16 @@
 package de.leostrakosch.reminder.cli;
 
-import de.leostrakosch.reminder.common.*;
-
 import de.leostrakosch.reminder.format.SeparatorFormatter;
 import de.leostrakosch.reminder.format.TaskFormat;
-import de.leostrakosch.reminder.cli.updates.*;
-import de.leostrakosch.reminder.format.*;
+
+import de.leostrakosch.reminder.cli.updates.TaskUpdate;
+import de.leostrakosch.reminder.cli.updates.MessageUpdate;
+
+import de.leostrakosch.reminder.common.TaskIDComparator;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CLIReminder extends Observable implements Reminder  {
 
