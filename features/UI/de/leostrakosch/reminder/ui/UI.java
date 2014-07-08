@@ -1,6 +1,7 @@
 package de.leostrakosch.reminder.ui;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import de.leostrakosch.reminder.common.FeatureRuntimeError;
 

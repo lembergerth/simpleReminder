@@ -16,8 +16,8 @@ import de.leostrakosch.reminder.common.Reminder;
 
 public class TaskPanel extends JPanel {
 
-  private final CLIReminder reminder;
-  private final long taskID;
+  private CLIReminder reminder; // stub
+  private long taskID; // stub
 
   private void addComponents(Task t) {
     original(t);

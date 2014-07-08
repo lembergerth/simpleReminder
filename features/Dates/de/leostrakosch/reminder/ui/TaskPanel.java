@@ -1,9 +1,15 @@
 package de.leostrakosch.reminder.ui;
 
+import java.awt.Component;
+
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
+
+import de.leostrakosch.reminder.ui.TaskPanel;
+import de.leostrakosch.reminder.common.Task;
 
 public class TaskPanel extends JPanel {
 

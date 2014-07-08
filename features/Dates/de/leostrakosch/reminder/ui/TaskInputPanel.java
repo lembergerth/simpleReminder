@@ -1,5 +1,6 @@
 package de.leostrakosch.reminder.ui;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -7,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 
 import de.leostrakosch.reminder.cli.CLIReminder;
 import de.leostrakosch.reminder.common.Date;
