@@ -17,8 +17,7 @@ import de.leostrakosch.reminder.common.Date;
  * TODO description
  */
 public class CLIReminder extends Observable implements Reminder {
-	DateFormat dateFormat = Configuration.DATE_FORMATTER;
-	
+
 	@Override
 	public long addTask(String name, Date dueDate) {
 		long id = this.getNextTaskID();
