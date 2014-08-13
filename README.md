@@ -33,3 +33,5 @@ If run without any arguments and an active GUI feature (which should be the case
 To see a list of command-line arguments, run
 	`java -jar <path_to_simpleReminder_jar> help`
 
+All persistent data of simpleReminder can be found in `~/.reminder`.
+
