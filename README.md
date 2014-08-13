@@ -13,7 +13,7 @@ Installation
 ------------
 
 To build a executable jar, run
-	ant build-jar
+	`ant build-jar`
 on the command-line, from the repository's source folder.
 
 The resulting jar is found in `out/jar`.
@@ -24,12 +24,12 @@ Using simpleReminder
 Currently, no executable or shell script exists for running simpleReminder.
 
 To run simpleReminder, run
-	java -jar <path_to_simpleReminder_jar> [arguments]
+	`java -jar <path_to_simpleReminder_jar> [arguments]`
 on the command-line with the correct path to the jar and the desired arguments.
 
 
 If run without any arguments and an active GUI feature (which should be the case if you didn't change the configuration), the GUI is started.
 
 To see a list of command-line arguments, run
-	java -jar <path_to_simpleReminder_jar> help
+	`java -jar <path_to_simpleReminder_jar> help`
 
